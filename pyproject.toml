@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "tech-challenge-modulo-4"
+version = "0.1.0"
+description = ""
+authors = ["Rafael <rafaelpfer@hotmail.com>"]
+readme = "README.md"
+packages = [{include = "tech_challenge_modulo_4"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.98.0"
+sqlalchemy = "2.0.20"
+python-dotenv = "^1.0.0"
+uvicorn = "0.23.2"
+psycopg2-binary = "^2.9.6"
+pydantic = {extras = ["email"], version = "^1.10.9"}
+httpx = "^0.24.1"
+pyjwt = "^2.8.0"
+pytest = "^7.4.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,19 @@
+version: "3"
+services:
+  tech-challenge-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tech-challenge-app
+    environment:
+      POSTGRES_USER: ""
+      POSTGRES_PASS: ""
+      POSTGRES_DB: ""
+      POSTGRES_HOST: ""
+      ENVIRONMENT: ""
+      WEBHOOK_BASE_URL: ""
+      MERCADO_PAGO_ACCESS_TOKEN: ""
+      MERCADO_PAGO_USER_ID: ""
+      MERCADO_PAGO_EXTERNAL_POS_ID: ""
+    ports:
+      - "8000:8000"

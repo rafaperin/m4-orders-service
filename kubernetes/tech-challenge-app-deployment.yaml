@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tech-challenge-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tech-challenge-app
+  template:
+    metadata:
+      labels:
+        app: tech-challenge-app
+    spec:
+      containers:
+      - name: tech-challenge-app-container
+        image: perinzaum/modulo2-tech-challenge
+        env:
+        - name: ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: tech-challenge-app-config
+              key: ENVIRONMENT
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: tech-challenge-app-config
+              key: POSTGRES_HOST
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: tech-challenge-secret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASS
+          valueFrom:
+            secretKeyRef:
+              name: tech-challenge-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: tech-challenge-secret
+              key: POSTGRES_DB
+        - name: WEBHOOK_BASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: tech-challenge-app-config
+              key: WEBHOOK_BASE_URL
+        - name: MERCADO_PAGO_ACCESS_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: tech-challenge-secret
+              key: MERCADO_PAGO_ACCESS_TOKEN
+        - name: MERCADO_PAGO_USER_ID
+          valueFrom:
+            secretKeyRef:
+              name: tech-challenge-secret
+              key: MERCADO_PAGO_USER_ID
+        - name: MERCADO_PAGO_EXTERNAL_POS_ID
+          valueFrom:
+            secretKeyRef:
+              name: tech-challenge-secret
+              key: MERCADO_PAGO_EXTERNAL_POS_ID
+        ports:
+        - containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /health-check
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 20

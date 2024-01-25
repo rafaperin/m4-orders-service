@@ -1,0 +1,133 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:604623258149:task-definition/task_definition_ecs:1",
+    "containerDefinitions": [
+        {
+            "name": "fiap-application",
+            "image": "604623258149.dkr.ecr.us-east-1.amazonaws.com/ecr-modulo-3:df0873ce98ff8a5c38cc442f56210e94a9cf3651",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "fiap-application-8000-tcp",
+                    "containerPort": 8000,
+                    "hostPort": 8000,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "POSTGRES_USER",
+                    "value": "fiap"
+                },
+                {
+                    "name": "WEBHOOK_BASE_URL",
+                    "value": "temp"
+                },
+                {
+                    "name": "JWT_ALGORITHM",
+                    "value": "HS256"
+                },
+                {
+                    "name": "POSTGRES_HOST",
+                    "value": "m3-db.c10ffknjsfsb.us-east-1.rds.amazonaws.com"
+                },
+                {
+                    "name": "JWT_SECRET",
+                    "value": "Pe3RD5gYwS0YTXo9L5rzW4PmIC327WJh"
+                },
+                {
+                    "name": "MERCADO_PAGO_USER_ID",
+                    "value": "temp"
+                },
+                {
+                    "name": "ENVIRONMENT",
+                    "value": "dev"
+                },
+                {
+                    "name": "POSTGRES_PASS",
+                    "value": "Fvb90aBTqMiB24vasviAv9OdgYXWBcuc"
+                },
+                {
+                    "name": "MERCADO_PAGO_ACCESS_TOKEN",
+                    "value": "temp"
+                },
+                {
+                    "name": "POSTGRES_DB",
+                    "value": "postgres"
+                },
+                {
+                    "name": "MERCADO_PAGO_EXTERNAL_POS_ID",
+                    "value": "temp"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/task_definition_ecs",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            }
+        }
+    ],
+    "family": "task_definition_ecs",
+    "taskRoleArn": "arn:aws:iam::604623258149:role/my-ecs-execution-role",
+    "executionRoleArn": "arn:aws:iam::604623258149:role/my-ecs-execution-role",
+    "networkMode": "awsvpc",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "2048",
+    "memory": "4096",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2023-11-05T23:09:57.626Z",
+    "registeredBy": "arn:aws:iam::604623258149:root",
+    "tags": []
+}

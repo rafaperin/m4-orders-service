@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tech-challenge-db-persistent-volume
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: tech-challenge-db-storage-class
+  hostPath:
+    path: /var/lib/postgresql/data
