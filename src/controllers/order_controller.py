@@ -94,11 +94,12 @@ class OrderController:
 
     @staticmethod
     async def remove_order(
-        order_id: uuid.UUID
+        order_id: uuid.UUID,
+        order_status: str
     ) -> dict:
         order_gateway = PostgresDBOrderRepository()
         try:
-            OrderUseCase(order_gateway).remove_order(order_id)
+            OrderUseCase(order_gateway).remove_order(order_id, order_status)
         except DomainError:
             raise OrderItemError.modification_blocked()
         except Exception:

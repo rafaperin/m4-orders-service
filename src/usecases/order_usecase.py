@@ -62,9 +62,9 @@ class OrderUseCase(OrderUseCaseInterface):
         self._order_repo.update(order_id, order)
         return order
 
-    def remove_order(self, order_id: uuid.UUID) -> None:
+    def remove_order(self, order_id: uuid.UUID, order_status: str) -> None:
         order = self._order_repo.get_by_id(order_id)
-        order.check_if_pending_order()
+        order.check_if_pending_order(order_status)
         self._order_repo.remove_order(order_id)
 
     def remove_order_item(
@@ -74,7 +74,6 @@ class OrderUseCase(OrderUseCaseInterface):
         item = self._order_repo.get_order_item(order_id, product_id)
 
         order.remove_order_item(item, product_price, order_status)
-        print(order)
 
         self._order_repo.remove_order_item(order_id, product_id)
         updated_order = self._order_repo.update(order_id, order)

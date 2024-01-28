@@ -31,7 +31,7 @@ class OrderUseCaseInterface(ABC):
     def remove_item(self, order_id: uuid.UUID, product_id: uuid.UUID) -> Order:
         pass
 
-    def remove_order(self, order_id: uuid.UUID) -> None:
+    def remove_order(self, order_id: uuid.UUID, order_status: str) -> None:
         pass
 
     def remove_order_item(
