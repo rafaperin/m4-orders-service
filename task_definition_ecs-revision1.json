@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:604623258149:task-definition/m4-orders:2",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:604623258149:task-definition/m4-orders:5",
     "containerDefinitions": [
         {
             "name": "m4-orders-1",
-            "image": "sha256:f73bdd11ac20818a82679709e945ad118fff08cc9b4d4900f6d323356eb208b8",
+            "image": "604623258149.dkr.ecr.us-east-1.amazonaws.com/m4-orders:f6a7c66ea0317bab34b239a0a774c07f7658e361",
             "cpu": 1024,
             "memory": 3072,
             "memoryReservation": 1024,
@@ -24,7 +24,7 @@
                 },
                 {
                     "name": "PRODUCTS_SERVICE",
-                    "value": "m4-products-alb-277719434.us-east-1.elb.amazonaws.com:8000"
+                    "value": "http://m4-products-alb-277719434.us-east-1.elb.amazonaws.com:8000"
                 },
                 {
                     "name": "JWT_ALGORITHM",
@@ -32,7 +32,7 @@
                 },
                 {
                     "name": "PAYMENTS_SERVICE",
-                    "value": "m4-payments-alb-1685891886.us-east-1.elb.amazonaws.com:8002"
+                    "value": "http://m4-payments-alb-1685891886.us-east-1.elb.amazonaws.com:8002"
                 },
                 {
                     "name": "POSTGRES_HOST",
@@ -56,11 +56,11 @@
                 },
                 {
                     "name": "ORDERS_STATUS_SERVICE",
-                    "value": "m4-prroduction-alb-1008155587.us-east-1.elb.amazonaws.com:8001"
+                    "value": "http://m4-prroduction-alb-1008155587.us-east-1.elb.amazonaws.com:8001"
                 },
                 {
                     "name": "CUSTOMERS_SERVICE",
-                    "value": "m4-customers-alb-97142252.us-east-1.elb.amazonaws.com:8004"
+                    "value": "http://m4-customers-alb-97142252.us-east-1.elb.amazonaws.com:8004"
                 }
             ],
             "mountPoints": [],
@@ -80,7 +80,7 @@
     "taskRoleArn": "arn:aws:iam::604623258149:role/my-ecs-execution-role",
     "executionRoleArn": "arn:aws:iam::604623258149:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 2,
+    "revision": 5,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -91,6 +91,9 @@
             "name": "ecs.capability.execution-role-awslogs"
         },
         {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
@@ -98,6 +101,9 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
@@ -123,7 +129,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-01-29T00:28:10.320Z",
+    "registeredAt": "2024-01-29T20:58:58.444Z",
     "registeredBy": "arn:aws:iam::604623258149:root",
     "tags": []
 }
