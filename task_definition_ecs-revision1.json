@@ -36,7 +36,7 @@
                 },
                 {
                     "name": "POSTGRES_HOST",
-                    "value": "m4-orders-alb-1304370311.us-east-1.elb.amazonaws.com"
+                    "value": "m4-orders-db.c10ffknjsfsb.us-east-1.rds.amazonaws.com"
                 },
                 {
                     "name": "JWT_SECRET",
