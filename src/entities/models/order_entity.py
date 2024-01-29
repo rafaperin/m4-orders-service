@@ -44,6 +44,7 @@ class Order:
 
     @staticmethod
     def check_if_pending_order(order_status) -> None:
+        print(order_status)
         if order_status != OrderStatus.PENDING:
             raise OrderError("Order already confirmed, modification not allowed!")
 
