@@ -162,7 +162,15 @@ async def remove_order(
     order_id: uuid.UUID
 ) -> dict:
     try:
-        await OrderController.remove_order(order_id)
+        headers = {
+            #     "Authorization": f"Bearer {access_token}",
+        }
+
+        r = httpx.get(f"{settings.ORDERS_STATUS_SERVICE}/order-status/id/{order_id}/status", headers=headers)
+        json_response = json.loads(r.content)
+        order_status = json_response["result"]["orderStatus"]
+
+        await OrderController.remove_order(order_id, order_status)
     except DomainError:
         raise OrderItemError.modification_blocked()
     except Exception:

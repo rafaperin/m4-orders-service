@@ -44,6 +44,7 @@ class Order:
 
     @staticmethod
     def check_if_pending_order(order_status) -> None:
+        print(order_status)
         if order_status != OrderStatus.PENDING:
             raise OrderError("Order already confirmed, modification not allowed!")
 
@@ -57,7 +58,7 @@ class Order:
         self.check_if_pending_order(order_status)
 
         self.order_items.append(order_item)
-        self.order_total = self.order_total + Decimal((order_item.product_quantity * product_price))  # type: ignore
+        self.order_total = Decimal(self.order_total) + Decimal((order_item.product_quantity * product_price))  # type: ignore
 
     def update_item_quantity(self, order_item: OrderItem, product_price: float, order_status: str) -> None:
         self.check_if_pending_order(order_status)
@@ -74,7 +75,7 @@ class Order:
     def remove_order_item(self, order_item: OrderItem, product_price: float, order_status: str) -> None:
         self.check_if_pending_order(order_status)
 
-        self.order_total = self.order_total - Decimal((order_item.product_quantity * product_price))  # type: ignore
+        self.order_total = Decimal(self.order_total) - Decimal((order_item.product_quantity * product_price))  # type: ignore
         self.order_items.remove(order_item)
 
 
